@@ -50,5 +50,15 @@ export default function App({ Component, pageProps }: AppProps) {
     logEvent('페이지뷰', { url: window.location.pathname })
   }, [])
 
+  React.useEffect(() => {
+    document.addEventListener('click', (e) => {
+      const origin = e.target.closest(`a`)
+
+      if (origin) {
+        logEvent('링크클릭', { url: origin.href })
+      }
+    })
+  }, [])
+
   return <Component {...pageProps} />
 }
