@@ -52,8 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   React.useEffect(() => {
     document.addEventListener('click', (e) => {
-      // @ts-ignore
-      const origin = e.target.closest(`a`)
+      const origin = (e.target as Element).closest(`a`)
 
       if (origin) {
         if (origin.target === '_blank')
