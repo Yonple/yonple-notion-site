@@ -52,6 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   React.useEffect(() => {
     document.addEventListener('click', (e) => {
+      // @ts-ignore
       const origin = e.target.closest(`a`)
 
       if (origin) {
