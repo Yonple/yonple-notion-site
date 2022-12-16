@@ -3,10 +3,9 @@ import * as React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 
-import * as Fathom from 'fathom-client'
+import { logEvent } from '@amplitude/analytics-browser'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
-import posthog from 'posthog-js'
 // used for code syntax highlighting (optional)
 import 'prismjs/themes/prism-coy.css'
 // core styles shared by all of react-notion-x (required)
@@ -19,14 +18,9 @@ import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
 
+import { initAmplitude } from '@/lib/amplitude'
 import { bootstrap } from '@/lib/bootstrap-client'
-import {
-  fathomConfig,
-  fathomId,
-  isServer,
-  posthogConfig,
-  posthogId
-} from '@/lib/config'
+import { isServer } from '@/lib/config'
 
 if (!isServer) {
   bootstrap()
@@ -36,22 +30,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
-    function onRouteChangeComplete() {
-      if (fathomId) {
-        Fathom.trackPageview()
-      }
+    initAmplitude()
 
-      if (posthogId) {
-        posthog.capture('$pageview')
-      }
-    }
-
-    if (fathomId) {
-      Fathom.load(fathomId, fathomConfig)
-    }
-
-    if (posthogId) {
-      posthog.init(posthogId, posthogConfig)
+    function onRouteChangeComplete(url: string) {
+      logEvent('페이지뷰', { url: url })
     }
 
     router.events.on('routeChangeComplete', onRouteChangeComplete)
@@ -59,7 +41,9 @@ export default function App({ Component, pageProps }: AppProps) {
     return () => {
       router.events.off('routeChangeComplete', onRouteChangeComplete)
     }
-  }, [router.events])
+
+    // eslint-disable-next-line
+  }, [])
 
   return <Component {...pageProps} />
 }

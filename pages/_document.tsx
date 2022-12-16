@@ -30,6 +30,19 @@ export default class MyDocument extends Document {
         <Html lang='en'>
           <Head>
             <link rel='shortcut icon' href='/favicon.ico' />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-Y3EW8CP54D', {
+                  page_path: window.location.pathname,
+                });
+              `
+              }}
+            />
           </Head>
 
           <body>
