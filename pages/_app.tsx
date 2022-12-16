@@ -55,7 +55,8 @@ export default function App({ Component, pageProps }: AppProps) {
       const origin = e.target.closest(`a`)
 
       if (origin) {
-        logEvent('링크클릭', { url: origin.href })
+        if (origin.target === '_blank')
+          logEvent('링크클릭', { url: origin.href })
       }
     })
   }, [])
