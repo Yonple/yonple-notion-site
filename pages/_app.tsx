@@ -45,5 +45,10 @@ export default function App({ Component, pageProps }: AppProps) {
     // eslint-disable-next-line
   }, [])
 
+  React.useEffect(() => {
+    initAmplitude()
+    logEvent('페이지뷰', { url: window.location.pathname })
+  }, [])
+
   return <Component {...pageProps} />
 }
