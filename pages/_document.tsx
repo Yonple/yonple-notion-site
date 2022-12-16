@@ -3,7 +3,27 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import { IconContext } from '@react-icons/all-files'
 
+import { renderStatic } from '@/lib/renderer'
+
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const page = await ctx.renderPage()
+    const { css, ids } = await renderStatic(page.html)
+    const initialProps = await Document.getInitialProps(ctx)
+    return {
+      ...initialProps,
+      styles: (
+        <React.Fragment>
+          {initialProps.styles}
+          <style
+            data-emotion={`css ${ids.join(' ')}`}
+            dangerouslySetInnerHTML={{ __html: css }}
+          />
+        </React.Fragment>
+      )
+    }
+  }
+
   render() {
     return (
       <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import * as types from 'notion-types'
+import styled from '@emotion/styled'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
 import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
 import cs from 'classnames'
@@ -44,8 +45,10 @@ export const NotionPageHeader: React.FC<{
 
   return (
     <header className='notion-header'>
-      <div className='notion-nav-header'>
-        <Breadcrumbs block={block} rootOnly={true} />
+      <div className={cs('notion-nav-header', styles.hiddenFirstItem)}>
+        <BreadcrumbWrapper>
+          <Breadcrumbs block={block} rootOnly={false} />
+        </BreadcrumbWrapper>
 
         <div className='notion-nav-header-rhs breadcrumbs'>
           {navigationLinks
@@ -86,3 +89,10 @@ export const NotionPageHeader: React.FC<{
     </header>
   )
 }
+
+const BreadcrumbWrapper = styled.div`
+  .breadcrumbs .breadcrumb:first-child,
+  .breadcrumbs .spacer:first-of-type {
+    display: none;
+  }
+`
