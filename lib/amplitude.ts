@@ -5,7 +5,7 @@ let amplitude: any
 export const initAmplitude = () => {
   if (amplitude) return
   amplitude = require('@amplitude/analytics-browser')
-  amplitude.init('7d66e2303d9d468465d11de153bd1c32')
+  amplitude.init('daee15a6986780dc943996cc00aedf38')
 }
 
 export const logEvent = (
