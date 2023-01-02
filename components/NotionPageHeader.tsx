@@ -91,7 +91,7 @@ export const NotionPageHeader: React.FC<{
 }
 
 const BreadcrumbWrapper = styled.div`
-  .breadcrumbs .breadcrumb:first-child,
+  .breadcrumbs .breadcrumb[href='/'],
   .breadcrumbs .spacer:first-of-type {
     display: none;
   }
