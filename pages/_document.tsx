@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
-import { IconContext } from '@react-icons/all-files'
+import { IconContext } from 'react-icons'
 
 import { renderStatic } from '@/lib/renderer'
 

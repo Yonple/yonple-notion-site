@@ -19,7 +19,6 @@
     "**/bower_components": true,
     "**/.lock-wscript": true,
     "build/Release": true,
-    "**/node_modules/": true,
     "**/jspm_packages/": true,
     "**/typings/": true,
     "**/.npm": true,

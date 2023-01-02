@@ -1,9 +1,11 @@
 import * as React from 'react'
 
-import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
-import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
-import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
+import {
+  FaEnvelopeOpenText,
+  FaGithub,
+  FaLinkedin,
+  FaYoutube
+} from 'react-icons/fa'
 
 import * as config from '@/lib/config'
 
