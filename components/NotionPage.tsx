@@ -1,6 +1,5 @@
 import * as React from 'react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import cs from 'classnames'
@@ -19,13 +18,13 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { Footer } from './Footer'
+import { Link } from './Link'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
 import styles from './styles.module.css'
-import { Link } from './Link'
 
 // -----------------------------------------------------------------------------
 // dynamic imports for optional components
@@ -152,7 +151,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   const components = React.useMemo(
     () => ({
-      nextImage: Image,
       nextLink: Link,
       Code,
       Collection,
